@@ -36,6 +36,10 @@ Funcionalidades
 - Sistema de estoque:
   - Registro de produtos e composição de preços.
   - Suporte a quantidades fracionadas (ex.: 1.5 kg ou 100.5 unidades).
+- Sistema de folha de pagamento:
+  - Registro de funcionários e beneficiários eventos para o e-social.
+  - Registro de cargo e salários, horas extras, benefícios e outras rubricas.
+  - Suporte a cálculos de férias, 13º salário e TRCT.
 - Estilo aprimorado:
   - Campos de busca reutilizáveis com ícones alinhados.
   - Tabelas responsivas com destaque em hover para melhorar a experiência do usuário.
