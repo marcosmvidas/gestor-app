@@ -1,66 +1,121 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+e-Gestor
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
 
-## About Laravel
+O **e-Gestor** é um sistema robusto e escalável, desenvolvido para gerenciamento de estoque, fornecedores, contas contábeis, folha de pagamento e outros módulos administrativos. 
+Este projeto adota as melhores práticas de desenvolvimento, como princípios SOLID DRY aplicando as boas práticas em programação, e utiliza tecnologias modernas para oferecer uma solução eficiente para negócios de diversos tipos.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Índice
+1. Visão Geral do Projeto
+2. Funcionalidades
+3. Tecnologias Utilizadas
+4. Configuração e Instalação
+5. Estrutura do Sistema
+6. Próximos Passos
+7. Contribuição
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
-## Learning Laravel
+Visão Geral do Projeto
+O **e-Gestor** foi projetado para atender às necessidades de pequenas e médias empresas, fornecendo ferramentas para:
+- Gerenciamento de estoques.
+- Cadastro de fornecedores e clientes.
+- Controle de contas contábeis com classificação sintética e analítica.
+- Relatórios detalhados e gráficos gerenciais.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+O sistema é modular e personalizável, permitindo adaptações conforme o setor de atuação da empresa.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Funcionalidades
+- Dashboard interativo: Visualização de dados como produtos mais vendidos, fornecedores a serem pagos, e clientes com saldos pendentes.
+- Gestão de Contas Contábeis:
+  - Cadastro e listagem com paginação.
+  - Atualização e exclusão de contas.
+- Gerenciamento de Fornecedores:
+  - Cadastro com validação de CNPJ.
+  - Integração de endereços diretamente no cadastro do fornecedor.
+- Sistema de estoque:
+  - Registro de produtos e composição de preços.
+  - Suporte a quantidades fracionadas (ex.: 1.5 kg ou 100.5 unidades).
+- Estilo aprimorado:
+  - Campos de busca reutilizáveis com ícones alinhados.
+  - Tabelas responsivas com destaque em hover para melhorar a experiência do usuário.
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Tecnologias Utilizadas
+Backend:
+- Laravel: Framework PHP para construção de APIs REST e backend robusto.
+- Livewire: Para criar interfaces dinâmicas sem necessidade de JavaScript adicional.
+- MySQL: Banco de dados para armazenamento de informações.
 
-### Premium Partners
+Frontend:
+- HTML/CSS: Customizado com foco em responsividade e acessibilidade.
+- Tailwind CSS: Framework CSS para estilização moderna.
+- Font Awesome: Ícones para melhorar a interface.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Outras Ferramentas:
+- Git: Controle de versão.
+- Docker (planejado): Para contêinerização e maior portabilidade.
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Configuração e Instalação
+Pré-requisitos:
+- PHP 8.1+ com extensões necessárias para Laravel.
+- Composer: Gerenciador de dependências PHP.
+- Node.js (para gerenciamento do frontend).
+- MySQL: Banco de dados relacional.
 
-## Code of Conduct
+Passos para configuração:
+1. Clone este repositório:
+   git clone <url-do-repositorio>
+   cd e-gestor
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+2. Instale as dependências do Laravel:
+   composer install
 
-## Security Vulnerabilities
+3. Configure o arquivo .env:
+   - Copie o exemplo:
+     cp .env.example .env
+   - Ajuste as configurações de banco de dados.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+4. Gere a chave da aplicação:
+   php artisan key:generate
 
-## License
+5. Execute as migrações e seeds (se necessário):
+   php artisan migrate --seed
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+6. Inicie o servidor de desenvolvimento:
+   php artisan serve
+
+
+Estrutura do Sistema
+Backend:
+- Services: Lógica de negócios, como criação de contas contábeis.
+- Repositories: Camada de abstração para acesso ao banco de dados.
+- Models: Representação das entidades como ContaContabil e Fornecedor.
+
+Frontend:
+- Componentes reutilizáveis como inputs de busca (global-input-find).
+- Páginas dinâmicas geradas com Livewire.
+
+
+Próximos Passos
+- Integração com RabbitMQ: Para comunicação entre microserviços.
+- Gráficos gerenciais: Dashboard com mais métricas visuais.
+- Suporte a multi-tenancy: Adaptação do sistema para múltiplas empresas no mesmo ambiente.
+
+
+Contribuição
+Contribuições são bem-vindas! Siga os passos abaixo:
+1. Faça um fork deste repositório.
+2. Crie uma nova branch:
+   git checkout -b feature/sua-feature
+
+3. Commit suas mudanças:
+   git commit -m "Descrição da feature"
+
+4. Envie suas alterações:
+   git push origin feature/sua-feature
+
+5. Abra um pull request.
+
+Desenvolvido com 💻 e dedicação para otimizar a gestão de empresas.
