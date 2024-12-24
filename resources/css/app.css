@@ -57,3 +57,55 @@
     pointer-events: none;
     font-size: 1.25rem;
 }
+
+/* Estilo básico para o container com tooltip */
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+/* Tooltip customizado (invisível por padrão) */
+.tooltip::after {
+    content: attr(data-title);
+    position: absolute;
+    top: -150%; /* Ajustado para colocar acima */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+    transform: translateX(-50%) translateY(10px);
+    z-index: 10;
+    max-width: calc(100% - 20px); /* Ajusta para não ultrapassar a tela */
+    white-space: normal; /* Permite quebra de linha */
+    text-align: center;
+    overflow-wrap: break-word; /* Quebra palavras longas */
+}
+
+/* Seta do tooltip */
+.tooltip::before {
+    content: '';
+    position: absolute;
+    top: -6px; /* Ajuste fino */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent rgba(0, 0, 0, 0.85) transparent;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease-in-out;
+}
+
+/* Exibe o tooltip ao passar o mouse */
+.tooltip:hover::after,
+.tooltip:hover::before {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+}

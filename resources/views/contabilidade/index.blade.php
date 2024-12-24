@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex items-center space-x-1 text-4xl text-teal-400 text-shadow-sm">
+        <div class="flex items-center space-x-4 text-4xl text-emerald-800">
             <i class="fa-solid fa-chart-bar"></i>
             <span class="font-semibold leading-tight">
                 {{ __('Contabilidade') }}
@@ -12,7 +12,7 @@
             <div class="overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="grid grid-cols-2 gap-1 p-6">
                     <div class="h-80 p-6">
-                        <h2 class="text-gray-500 font-semibold text-2xl">
+                        <h2 class="text-emerald-600 font-semibold text-2xl rounded-md border-b-2 border-emerald-600 ">
                             <i class="fa fa-sort-numeric-asc" aria-hidden="true"></i>
                             Lançamento Contábil
                         </h2>
@@ -25,8 +25,8 @@
                     </div>
 
                     <div class="h-80 p-6">
-                        <h2 class="text-gray-500 font-semibold text-2xl">
-                            <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                    <h2 class="text-emerald-600 font-semibold text-2xl rounded-md border-b-2 border-emerald-600 ">
+                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
                             Relatórios Contábil
                         </h2>
                         <ul class="list-disc text-gray-600 p-5">
@@ -42,15 +42,15 @@
                     </div>
 
                     <div class="h-80 p-6">
-                        <h2 class="text-gray-500 font-semibold text-2xl">
+                        <h2 class="text-emerald-600 font-semibold text-2xl rounded-md border-b-2 border-emerald-600 ">
                             <i class="fa fa-align-left" aria-hidden="true"></i>
-                            Plano de Conta Contábil
+                                Plano de Conta Contábil
                         </h2>
                         <ul class="list-disc text-gray-600 p-5">
                         <li>
-                            <a href="{{ route('contabilidade.conta-contabil-listar') }}" class="hover:text-blue-600">
+                            <x-nav-link href="{{ route('contabilidade.conta-contabil-listar') }}">
                                 {{ __('Listar') }}
-                            </a>
+                            </x-nav-link>
                         </li>
                         <li><a href="#" class="hover:text-blue-600">Imprimir</a></li>
                         </ul>
