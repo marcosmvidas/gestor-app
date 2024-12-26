@@ -63,6 +63,21 @@
                             <li><a href="#" class="hover:text-orange-600">Treinamentos</a></li>
                         </ul>
                     </div>
+
+                    <div class="h-auto p-6">
+                        <h2 class="text-orange-700 font-semibold text-2xl rounded-md border-b-2 border-orange-700">
+                        <i class="fa-solid fa-user-slash" aria-hidden="true"></i>
+                            Rescisão Contratual
+                        </h2>
+                        <ul class="list-disc p-5">
+                            <li><a href="#" class="hover:text-orange-600">Cálculo</a></li>
+                            <li><a href="#" class="hover:text-orange-600">TRCT <span class="text-xs">/Termo de Rescisão do Contrato de Trabalho</span></a></li>
+                            <li><a href="#" class="hover:text-orange-600">Homologação</a></li>
+                            <li><a href="#" class="hover:text-orange-600">Encaminhamento</a></li>
+                            <li><a href="#" class="hover:text-orange-600">Relatórios</a></li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </div>

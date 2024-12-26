@@ -1,9 +1,9 @@
 <div>
     <x-slot name="header">
-        <div class="flex items-center space-x-1 text-4xl text-teal-400 text-shadow-sm">
+        <div class="flex items-center space-x-1 text-4xl text-blue-800">
             <i class="fa-solid fa-chart-bar"></i>
             <span class="font-semibold leading-tight">
-                {{ __('Contabilidade') }}
+                {{ __('Depto Contabil') }}
             </span>
         </div>
     </x-slot>
@@ -17,16 +17,21 @@
                     <input type="text" placeholder="Buscar conta contábil..." />
                 </div>
                 <button 
-                    class="w-full sm:w-auto px-4 py-2 text-white bg-teal-500 hover:bg-teal-600 rounded-lg shadow focus:ring-2 focus:ring-teal-300"
+                    class="w-full sm:w-auto px-4 py-2 text-blue-500 hover:bg-blue-500 hover:text-blue-5 0 rounded-lg shadow focus:ring-2 focus:ring-teal-300"
                 >
                     <i class="fa-solid fa-plus mr-2"></i> Cadastro
+                    
                 </button>
+                <a href="{{ route('contabilidade.plano-contas-form') }}" class="hover:text-blue-600">
+                                {{ __('Listar') }}
+                            </a>
+
             </div>
 
             <!-- Tabela -->
             <div class="overflow-x-auto shadow-xl sm:rounded-lg mt-4">
                 <table class="min-w-full bg-white border border-gray-200">
-                    <thead class="bg-teal-500 text-white">
+                    <thead class="bg-blue-500 text-white">
                         <tr>
                             <th class="px-4 py-2 text-center">Código Reduzido</th>
                             <th class="px-4 py-2 text-left">Classificação</th>
@@ -36,7 +41,7 @@
                     </thead>
                     <tbody>
                         @foreach($contas as $conta)
-                        <tr class="hover:bg-teal-50 transition duration-200">
+                        <tr class="hover:bg-blue-50 transition duration-200">
                             <td class="px-4 py-2 text-center">{{ $conta['codigo_reduzido'] }}</td>
                             <td class="px-4 py-2">{{ $conta['classificacao'] }}</td>
                             <td class="px-4 py-2">{{ $conta['descricao'] }}</td>

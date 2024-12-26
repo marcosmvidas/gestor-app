@@ -1,7 +1,9 @@
 <?php
 
-use App\Livewire\Contabilidade\ContaContabilListar;
-
+use App\Livewire\{
+    Contabilidade\ContaContabilListar,
+    Contabilidade\PlanoContasForm,    
+};
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,6 +28,7 @@ Route::middleware([
     })->name('financeiro');
 
     Route::get('contabilidade/conta-contabil-listar', ContaContabilListar::class)->name('contabilidade.conta-contabil-listar');
+    Route::get('contabilidade/plano-contas-form', PlanoContasForm::class)->name('contabilidade.plano-contas-form');
 
     Route::get('/fiscal', function () {
         return view('fiscal.index');
