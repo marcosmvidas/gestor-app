@@ -21,9 +21,17 @@ Route::middleware([
         return view('contabilidade.index');
     })->name('contabilidade');
 
+    Route::get('financeiro', function () {
+        return view('financeiro.index');
+    })->name('financeiro');
+
     Route::get('contabilidade/conta-contabil-listar', ContaContabilListar::class)->name('contabilidade.conta-contabil-listar');
 
     Route::get('/fiscal', function () {
         return view('fiscal.index');
     })->name('fiscal');
+
+    Route::get('/recursos-humanos', function () {
+        return view('recursos-humanos.index');
+    })->name('recursos-humanos');
 });

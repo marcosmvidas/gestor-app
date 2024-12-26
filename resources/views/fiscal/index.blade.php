@@ -3,7 +3,7 @@
         <div class="flex items-center space-x-4 text-4xl text-emerald-800">
             <i class="fa-solid fa-money-check-dollar"></i>
             <span class="font-semibold leading-tight">
-                {{ __('Fiscal') }}
+                {{ __('Depto Fiscal') }}
             </span>
         </div>
     </x-slot>
