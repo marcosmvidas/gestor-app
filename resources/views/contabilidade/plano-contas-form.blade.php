@@ -1,1 +1,1 @@
-<livewire:plano-contas-form />
+<livewire:contabilidade.plano-contas-form />

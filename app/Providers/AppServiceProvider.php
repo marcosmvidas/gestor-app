@@ -12,8 +12,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
-    }
+        $this->app->singleton(ContaContabilValidate::class, function ($app) {
+            return new ContaContabilValidate();
+        });    }
 
     /**
      * Bootstrap any application services.

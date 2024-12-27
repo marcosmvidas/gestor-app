@@ -17,7 +17,7 @@ class ContaContabilValidate
         $rules = [
             'classificacao' => 'required|string|max:14',
             'descricao' => 'required|string',
-            'tipo' => 'required|in:A,S',
+            'tipo' => 'nullable|in:A,S',
             'natureza' => 'nullable|in:D,C',
             'cta_referencial_sped' => 'nullable|string',
             'observacao' => 'nullable|string',
