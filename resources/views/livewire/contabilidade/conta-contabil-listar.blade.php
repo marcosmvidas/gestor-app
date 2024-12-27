@@ -10,30 +10,26 @@
 
     <div class="p-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <!-- Barra de Ações -->
             <div class="flex flex-wrap justify-between items-center bg-white p-4 rounded-t-lg shadow gap-4">
                 <div class="input-find">
                     <i class="fa fa-search"></i>
                     <input type="text" placeholder="Buscar conta contábil..." />
                 </div>
-                <button 
-                    class="w-full sm:w-auto px-4 py-2 text-blue-500 hover:bg-blue-500 hover:text-blue-5 0 rounded-lg shadow focus:ring-2 focus:ring-teal-300"
-                >
-                    <i class="fa-solid fa-plus mr-2"></i> Cadastro
-                    
-                </button>
-                <a href="{{ route('contabilidade.plano-contas-form') }}" class="hover:text-blue-600">
-                                {{ __('Listar') }}
-                            </a>
-
+                <div class="flex items-center space-x-4">
+                    <a 
+                        href="{{ route('contabilidade.plano-contas-form') }}"
+                        class="w-full sm:w-auto px-4 py-2 text-blue-500 hover:bg-blue-500 hover:text-white rounded-lg shadow focus:ring-2 focus:ring-teal-300 inline-flex items-center"
+                    >
+                        <i class="fa-solid fa-plus mr-2"></i> Cadastro
+                    </a>
+                </div>
             </div>
 
-            <!-- Tabela -->
             <div class="overflow-x-auto shadow-xl sm:rounded-lg mt-4">
                 <table class="min-w-full bg-white border border-gray-200">
                     <thead class="bg-blue-500 text-white">
                         <tr>
-                            <th class="px-4 py-2 text-center">Código Reduzido</th>
+                            <th class="px-4 py-2 text-center">Código</th>
                             <th class="px-4 py-2 text-left">Classificação</th>
                             <th class="px-4 py-2 text-left">Descrição</th>
                             <th class="px-4 py-2">Ação</th>
@@ -46,7 +42,9 @@
                             <td class="px-4 py-2">{{ $conta['classificacao'] }}</td>
                             <td class="px-4 py-2">{{ $conta['descricao'] }}</td>
                             <td class="px-6 py-2 text-sm text-center">
-                                <a href="#" class="text-blue-600 hover:text-blue-800 p-2" title="Edita a conta contábil selecionada">
+                                <a href="{{ route('contabilidade.plano-contas-form', $conta['id']), $conta['$editing === true'] }}" 
+                                    class="text-blue-600 hover:text-blue-800 p-2" title="Edita a conta contábil selecionada"
+                                >
                                     <i class="fa fa-edit"></i>
                                 </a>
                                 <form action="#" method="POST" class="inline">
@@ -60,7 +58,6 @@
                     </tbody>
                 </table>
 
-                <!-- Paginação -->
                 <div class="pagination-links p-4">
                     {{ $contas->links() }}
                 </div>

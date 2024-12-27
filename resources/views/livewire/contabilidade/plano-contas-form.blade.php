@@ -17,7 +17,7 @@
                     </x-slot>
 
                     <x-slot name="description">
-                        {{ __('Preencha as informações abaixo para gerenciar a conta contábil.') }}
+                        {{ __('Preencha as informações no formulário.') }}
                     </x-slot>
 
                     <x-slot name="form">
@@ -33,48 +33,45 @@
                             <x-input-error for="codigo_reduzido" class="mt-2" />
                         </div>
 
-
                         <div class="col-span-6 sm:col-span-6">
                             <x-label for="descricao" value="{{ __('Descrição') }}" />
                             <x-input id="descricao" type="text" class="mt-1 block w-full" wire:model.defer="descricao" />
                             <x-input-error for="descricao" class="mt-2" />
                         </div>
 
-                        <div class="col-span-6 sm:col-span-3">
+                        <div class="col-span-2 sm:col-span-2">
                             <x-label for="tipo" value="Tipo" />
-                            <select id="tipo" wire:model.defer="tipo" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                <option value="">Selecione</option>
+                            <select id="tipo" wire:model.defer="tipo" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                                 <option value="A">Analítica</option>
                                 <option value="S">Sintética</option>
                             </select>
                             <x-input-error for="tipo" class="mt-2" />
                         </div>
 
-                        <div class="col-span-6 sm:col-span-3">
+                        <div class="col-span-6 sm:col-span-2">
                             <x-label for="natureza" value="Natureza" />
-                            <select id="natureza" wire:model.defer="natureza" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                <option value="">Selecione</option>
+                            <select id="natureza" wire:model.defer="natureza" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
                                 <option value="D">Devedora</option>
                                 <option value="C">Credora</option>
                             </select>
                             <x-input-error for="natureza" class="mt-2" />
                         </div>
 
-                        <div class="col-span-6 sm:col-span-6">
-                            <x-label for="cta_referencial_sped" value="{{ __('Conta Referencial SPED') }}" />
-                            <x-input id="cta_referencial_sped" type="text" class="mt-1 block w-full" wire:model.defer="cta_referencial_sped" />
+                        <div class="col-span-6 sm:col-span-2">
+                            <x-label for="cta_referencial_sped" value="{{ __('Conta Referencial') }}" />
+                            <x-input id="cta_referencial_sped" type="text" class="mt-1 block w-full" wire:model.defer="cta_referencial_sped" placeholder="SPED" />
                             <x-input-error for="cta_referencial_sped" class="mt-2" />
                         </div>
 
                         <div class="col-span-6">
                             <x-label for="observacao" value="{{ __('Observação') }}" />
-                            <textarea id="observacao" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" wire:model.defer="observacao"></textarea>
+                            <textarea id="observacao" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" wire:model.defer="observacao"></textarea>
                             <x-input-error for="observacao" class="mt-2" />
                         </div>
 
                         <div class="col-span-6">
-                            <x-label for="ativo" value="{{ __('Ativo') }}" />
-                            <x-checkbox id="ativo" wire:model.defer="ativo" />
+                            <x-label for="ativo" value="{{ __('Ativo') }}" class="inline-flex relative items-center cursor-pointer"/>
+                            <input type="checkbox" wire:model="ativo" value="1" @if($ativo) checked @endif />
                             <x-input-error for="ativo" class="mt-2" />
                         </div>
                     </x-slot>
@@ -84,11 +81,13 @@
                             {{ __('Saved.') }}
                         </x-action-message>
                         <x-button>
-                            {{ $editing ? __('Update') : __('Save') }}
+                            {{ $editing ? __('Alterar') : __('Salvar') }}
                         </x-button>
                     </x-slot>
                 </x-form-section>
+
                 <x-section-border />
+
             </div>
         </div>
     </div>

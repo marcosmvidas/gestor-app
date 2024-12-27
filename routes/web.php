@@ -29,6 +29,7 @@ Route::middleware([
 
     Route::get('contabilidade/conta-contabil-listar', ContaContabilListar::class)->name('contabilidade.conta-contabil-listar');
     Route::get('contabilidade/plano-contas-form', PlanoContasForm::class)->name('contabilidade.plano-contas-form');
+    Route::get('contabilidade/plano-contas-form/{contaId?}', PlanoContasForm::class)->name('contabilidade.plano-contas-form');
 
     Route::get('/fiscal', function () {
         return view('fiscal.index');

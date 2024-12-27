@@ -3,7 +3,7 @@
 namespace App\Livewire\Contabilidade;
 
 use Livewire\Component;
-use App\Actions\Contabilidade\CreateNewContaContabil;
+use App\Actions\Contabilidade\CreateContaContabil;
 use App\Actions\Contabilidade\UpdateContaContabil;
 use App\Actions\Contabilidade\DeleteContaContabil;
 use App\Models\ContaContabilModel;
@@ -49,8 +49,11 @@ class PlanoContasForm extends Component
     {
         if ($contaId) {
             $this->editing = true;
+
             $conta = ContaContabilModel::findOrFail($contaId);
-            $this->fill($onta->toArray());
+            if($conta) {
+                $this->fill($conta->toArray());
+            }
         } else {
             $this->codigo_reduzido = self::gerarCodigoReduzido();
         }
@@ -58,41 +61,22 @@ class PlanoContasForm extends Component
 
     public function createConta()
     {
-        $input = [
-            'classificacao' => $this->classificacao,
-            'codigo_reduzido' => $this->codigo_reduzido,
-            'descricao' => $this->descricao,
-            'tipo' => $this->tipo,
-            'natureza' => $this->natureza,
-            'cta_referencial_sped' => $this->cta_referencial_sped ?? '',
-            'observacao' => $this->observacao ?? '',
-            'ativo' => $this->ativo,
-        ];
-
-        $conta = (new ContaContabilModel())->create($input);
-
+        $input = $this->prepareInputData();
+    
+        $createAction = app(CreateContaContabil::class);
+        $createAction->create($input);
+    
         session()->flash('message', 'Conta contábil criada com sucesso!');
         $this->resetForm();
     }
-
+    
     public function updateConta()
     {
-        $this->validate();
+        $input = $this->prepareInputData();
 
-        $conta = ContaContabil::findOrFail($this->contaId);
-        $input = [
-            'classificacao' => $this->classificacao,
-            'codigo_reduzido' => $this->codigo_reduzido,
-            'descricao' => $this->descricao,
-            'tipo' => $this->tipo,
-            'natureza' => $this->natureza,
-            'cta_referencial_sped' => $this->cta_referencial_sped,
-            'observacao' => $this->observacao,
-            'ativo' => $this->ativo,
-        ];
-
-        (new UpdateContaContabil())->update($conta, $input);
-
+        $updateAction = app(UpdateContaContabil::class);
+        $updateAction->update($input, ContaContabilModel::findOrFail($this->contaId));
+        
         session()->flash('message', 'Conta contábil atualizada com sucesso!');
         $this->resetForm();
     }
