@@ -24,7 +24,8 @@ class AppServiceProvider extends ServiceProvider
         Passport::tokensExpireIn(now()->addDays(15));
         Passport::refreshTokensExpireIn(now()->addDays(30));
 
-        // Carregar chaves customizadas, se necessário
         Passport::loadKeysFrom(__DIR__.'/Passport/secrets/oauth');
+        Passport::enablePasswordGrant();
+        Passport::enableImplicitGrant();
     }
 }

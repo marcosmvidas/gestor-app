@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex items-center space-x-2 text-3xl text-gray-600">
+        <div class="flex items-center space-x-2 text-2xl">
             <i class="fa-solid fa-chart-bar"></i>
             <span class="font-semibold leading-tight">
                 {{ __('Depto Contábil') }}

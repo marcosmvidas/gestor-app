@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex items-center space-x-4 text-4xl text-emerald-800">
+        <div class="flex items-center space-x-2 text-2xl">
             <i class="fa-solid fa-money-check-dollar"></i>
             <span class="font-semibold leading-tight">
                 {{ __('Depto Fiscal') }}
@@ -9,7 +9,7 @@
     </x-slot>
     <div class="p-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="overflow-hidden shadow-xl sm:rounded-lg bg-gradient-to-r from-green-50">
+            <div class="overflow-hidden shadow-xl sm:rounded-lg bg-gradient-to-r from-gray-100">
                 <div class="grid grid-cols-2 gap-1 p-6">
                     <!-- Lançamentos -->
                     <div class="h-auto p-6">

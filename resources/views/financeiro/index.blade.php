@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
-        <div class="flex items-center space-x-4 text-4xl text-gray-600">
-        <i class="fa-solid fa-circle-dollar-to-slot" aria-hidden="true"></i>
+        <div class="flex items-center space-x-2 text-2xl">
+            <i class="fa-solid fa-circle-dollar-to-slot" aria-hidden="true"></i>
             <span class="font-semibold leading-tight">
                 {{ __('Depto Financeiro') }}
             </span>
@@ -37,7 +37,7 @@
                     <div class="h-auto p-6">
                         <h2 class="text-gray-600 font-semibold text-2xl rounded-md border-b-2 border-gray-600">
                             <i class="fa-brands fa-shopify" aria-hidden="true"></i>
-                            Compras 
+                            Compras
                         </h2>
                         <ul class="list-disc p-5">
                             <li><a href="#" class="hover:text-gray-400">Fornecedor</a></li>

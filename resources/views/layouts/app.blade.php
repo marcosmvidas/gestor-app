@@ -19,7 +19,7 @@
         @livewireStyles
     </head>
     <body class="font-sans antialiased">
-    
+
         <div id="global-loader">
             <div class="loader">
                 <img src="{{ asset('blue-loading-gif-transparent.gif') }}" alt="Carregando..." class="h-32 w-32">
