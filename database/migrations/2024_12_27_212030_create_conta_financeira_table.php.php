@@ -11,27 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contas_contabil', function (Blueprint $table) {
+        Schema::create('contas_financeira', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('classificacao', 14)->unique();
-            $table->string('codigo_reduzido')->unique();
-            $table->string('descricao');
-            $table->enum('tipo', ['A', 'S']);
-            $table->enum('natureza', ['D', 'C']);
-            $table->string('cta_referencial_sped');
+            $table->string('descricao')->unique();
             $table->string('observacao');
+            $table->integer('chave_contabil')->unsigned();
             $table->boolean('ativo')->default(true);
             $table->timestamps();
-         
         });
-    }    
+    }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('contas_contabil');
+        Schema::dropIfExists('contas_financeira');
     }
 };
-

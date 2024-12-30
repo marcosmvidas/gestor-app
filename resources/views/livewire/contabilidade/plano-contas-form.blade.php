@@ -42,8 +42,9 @@
                         <div class="col-span-2 sm:col-span-2">
                             <x-label for="tipo" value="Tipo" />
                             <select id="tipo" wire:model.defer="tipo" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
-                                <option value="A">Analítica</option>
-                                <option value="S">Sintética</option>
+                            <option value=""></option>
+                            <option value="A">Analítica</option>
+                            <option value="S">Sintética</option>
                             </select>
                             <x-input-error for="tipo" class="mt-2" />
                         </div>
@@ -51,6 +52,7 @@
                         <div class="col-span-6 sm:col-span-2">
                             <x-label for="natureza" value="Natureza" />
                             <select id="natureza" wire:model.defer="natureza" class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value=""></option>
                                 <option value="D">Devedora</option>
                                 <option value="C">Credora</option>
                             </select>

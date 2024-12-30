@@ -109,3 +109,19 @@
     opacity: 1;
     transform: translateX(-50%) translateY(0);
 }
+
+.conta {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+
+    &.sintetica {
+        color: #040720;
+    }
+
+    &.analitica {
+        background-color: #e8f5e9;
+        color: #388e3c;
+    }
+}

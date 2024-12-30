@@ -1,23 +1,23 @@
 <?php
 
-namespace App\Livewire\Contabilidade;
+namespace App\Livewire\Financeiro;
 
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Services\ContaContabilService;
+use App\Services\ContaFinanceiraService;
 
-class ContaContabilListar extends Component
+class ContaFinanceiraListar extends Component
 {
     use WithPagination;
 
-    public $ordenacao = 'classificacao';
+    public $ordenacao = 'descricao';
     public $direcaoOrdenacao = 'asc';
 
     public function render()
     {
-        $contas = app(ContaContabilService::class)->list(15, $this->ordenacao, $this->direcaoOrdenacao);
+        $contas = app(ContaFinanceiraService::class)->list(15, $this->ordenacao, $this->direcaoOrdenacao);
 
-        return view('livewire.contabilidade.conta-contabil-listar', [
+        return view('livewire.financeiro.conta-financeira-listar', [
             'contas' => $contas,
         ])->layout('layouts.app');
     }

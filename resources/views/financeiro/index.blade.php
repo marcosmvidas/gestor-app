@@ -9,7 +9,7 @@
     </x-slot>
     <div class="p-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="overflow-hidden shadow-xl sm:rounded-lg bg-gradient-to-r from-gray-200">
+            <div class="overflow-hidden shadow-xl sm:rounded-lg bg-gradient-to-r from-gray-100">
                 <div class="grid grid-cols-2 gap-1 p-6">
                 <div class="h-auto p-6">
                         <h2 class="text-gray-600 font-semibold text-2xl rounded-md border-b-2 border-gray-600">
@@ -70,7 +70,11 @@
                             Planejamento e Controle
                         </h2>
                         <ul class="list-disc p-5">
-                            <li><a href="#" class="hover:text-gray-400">Plano de Contas</a></li>
+                            <li>
+                                <a href="{{ route('financeiro.conta-financeira-listar') }}" class="hover:text-sm">
+                                    Plano de Contas
+                                </a>
+                            </li>
                             <li><a href="#" class="hover:text-gray-400">Centro de custos</a></li>
                             <li><a href="#" class="hover:text-gray-400">Estoque</a></li>
                             <li><a href="#" class="hover:text-gray-400">Relatórios</a></li>

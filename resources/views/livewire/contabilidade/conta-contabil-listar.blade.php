@@ -32,25 +32,31 @@
                             <th class="px-4 py-2 text-center">Código</th>
                             <th class="px-4 py-2 text-left">Classificação</th>
                             <th class="px-4 py-2 text-left">Descrição</th>
+                            <th class="px-4 py-2 text-left">Analitica/Sitética</th>
                             <th class="px-4 py-2">Ação</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($contas as $conta)
-                        <tr class="hover:bg-blue-50 transition duration-200">
+                        <tr class="hover:bg-blue-50 transition duration-200 
+                            {{ $conta['tipo'] === 'A' ? 'bg-gray-50 text-gray-700' : 'bg-gray-200 font-semibold' }}"
+                        >
                             <td class="px-4 py-2 text-center">{{ $conta['codigo_reduzido'] }}</td>
                             <td class="px-4 py-2">{{ $conta['classificacao'] }}</td>
                             <td class="px-4 py-2">{{ $conta['descricao'] }}</td>
+                            <td class="px-4 py-2">{{ $conta['tipo'] === 'A' ? 'Analítica' : 'Sintética' }}</td>
                             <td class="px-6 py-2 text-sm text-center">
-                                <a href="{{ route('contabilidade.plano-contas-form', $conta['id']), $conta['$editing === true'] }}" 
-                                    class="text-blue-600 hover:text-blue-800 p-2" title="Edita a conta contábil selecionada"
+                                <a href="{{ route('contabilidade.plano-contas-form', $conta['id']) }}" 
+                                    class="text-blue-600 hover:text-blue-800 p-2" title="Editar conta contábil"
                                 >
                                     <i class="fa fa-edit"></i>
                                 </a>
                                 <form action="#" method="POST" class="inline">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="text-red-600 hover:text-red-800 p-2" title="Deleta a conta contábil selecionada"><i class="fa fa-trash"></i></button>
+                                    <button type="submit" class="text-red-600 hover:text-red-800 p-2" title="Deletar conta contábil">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
