@@ -14,9 +14,9 @@ class RubricaService
         $this->repository = $repository;
     }
 
-    public function list()
+    public function list(int $perPage = 2, string $orderBy = 'descricao', string $orderDirection = 'asc')
     {
-        return $this->repository->all();
+        return $this->repository->list($perPage, $orderBy, $orderDirection);
     }
 
     public function show(int $id)

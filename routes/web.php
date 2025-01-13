@@ -4,6 +4,8 @@ use App\Livewire\{
     Contabilidade\ContaContabilListar,
     Contabilidade\PlanoContasForm,
     Financeiro\ContaFinanceiraListar,
+    FolhaPagamento\RubricaListar,
+    FolhaPagamento\RubricaForm,
 };
 use Illuminate\Support\Facades\Route;
 
@@ -34,10 +36,19 @@ Route::middleware([
     Route::get('contabilidade/plano-contas-form', PlanoContasForm::class)->name('contabilidade.plano-contas-form');
     Route::get('contabilidade/plano-contas-form/{contaId?}', PlanoContasForm::class)->name('contabilidade.plano-contas-form');
 
+    // Rotas folha de pagamento
+    Route::get('folha-pagamento/rubrica-listar', RubricaListar::class)->name('folha-pagamento.rubrica-listar');
+    Route::get('folha-pagamento/rubrica-form', RubricaForm::class)->name('folha-pagamento.rubrica-form');
+
     // Rotas para fiscal
     Route::get('fiscal', function () {
         return view('fiscal.index');
     })->name('fiscal');
+
+    // Rotas para estoque
+    Route::get('estoque', function () {
+        return view('estoque.index');
+    })->name('estoque');
 
     // Rotas para recursos humanos
     Route::get('recursos-humanos', function () {

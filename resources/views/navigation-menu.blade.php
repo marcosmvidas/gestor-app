@@ -17,6 +17,9 @@
                     <x-nav-link href="{{ route('contabilidade') }}" :active="request()->routeIs('contabilidade')">
                         {{ __('Contabilidade') }}
                     </x-nav-link>
+                    <x-nav-link href="{{ route('estoque') }}" :active="request()->routeIs('estoque')">
+                        {{ __('Compras') }}
+                    </x-nav-link>
                     <x-nav-link href="{{ route('financeiro') }}" :active="request()->routeIs('financeiro')">
                         {{ __('Financeiro') }}
                     </x-nav-link>
@@ -25,6 +28,9 @@
                     </x-nav-link>
                     <x-nav-link href="{{ route('recursos-humanos') }}" :active="request()->routeIs('recursos-humanos')">
                         {{ __('Recursos Humanos') }}
+                    </x-nav-link>
+                    <x-nav-link href="#" :active="request()->routeIs('')">
+                        {{ __('Vendas') }}
                     </x-nav-link>
                 </div>
             </div>

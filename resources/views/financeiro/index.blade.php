@@ -17,9 +17,9 @@
                             Receita
                         </h2>
                         <ul class="list-disc p-5">
-                            <li><a href="#" class="hover:text-gray-400">Cliente</a></li>
-                            <li><a href="#" class="hover:text-gray-400">Pedido</a></li>
-                            <li><a href="#" class="hover:text-gray-400">Contas a receber</a></li>
+                            <li><a href="#" class="hover:font-semibold hover:text-sm">Cliente</a></li>
+                            <li><a href="#" class="hover:font-semibold hover:text-sm">Pedido</a></li>
+                            <li><a href="#" class="hover:font-semibold hover:text-sm">Contas a receber</a></li>
                         </ul>
                     </div>
 
@@ -29,8 +29,8 @@
                             Despesa
                         </h2>
                         <ul class="list-disc p-5">
-                        <li><a href="#" class="hover:text-gray-400">Listar</a></li>
-                        <li><a href="#" class="hover:text-gray-400">Imprimir</a></li>
+                        <li><a href="#" class="hover:font-semibold hover:text-sm">Listar</a></li>
+                        <li><a href="#" class="hover:font-semibold hover:text-sm">Imprimir</a></li>
                         </ul>
                     </div>
 
@@ -40,9 +40,9 @@
                             Compras
                         </h2>
                         <ul class="list-disc p-5">
-                            <li><a href="#" class="hover:text-gray-400">Fornecedor</a></li>
-                            <li><a href="#" class="hover:text-gray-400">Orçamento</a></li>
-                            <li><a href="#" class="hover:text-gray-400">Contas a pagar</a></li>
+                            <li><a href="#" class="hover:font-semibold hover:text-sm">Fornecedor</a></li>
+                            <li><a href="#" class="hover:font-semibold hover:text-sm">Orçamento</a></li>
+                            <li><a href="#" class="hover:font-semibold hover:text-sm">Contas a pagar</a></li>
                         </ul>
                     </div>
 
@@ -54,11 +54,11 @@
                             Movimentação
                         </h2>
                         <ul class="list-disc p-5">
-                            <li><a href="#" class="hover:text-gray-400">Conciliação</a></li>
-                            <li><a href="#" class="hover:text-gray-400">Baixa <span class="text-xs">/Receita/Despesa</span></a></li></a></li>
-                            <li><a href="#" class="hover:text-gray-400">Liquidação de títulos</a></li></a></li>
-                            <li><a href="#" class="hover:text-gray-400">Transferências</a></li>
-                            <li><a href="#" class="hover:text-gray-400">Relatórios</a></li>
+                            <li><a href="#" class="hover:font-semibold hover:text-sm">Conciliação</a></li>
+                            <li><a href="#" class="hover:font-semibold hover:text-sm">Baixa <span class="text-xs">/Receita/Despesa</span></a></li>
+                            <li><a href="#" class="hover:font-semibold hover:text-sm">Liquidação de títulos</a></li>
+                            <li><a href="#" class="hover:font-semibold hover:text-sm">Transferências</a></li>
+                            <li><a href="#" class="hover:font-semibold hover:text-sm">Relatórios</a></li>
                         </ul>
                     </div>
 
@@ -70,14 +70,10 @@
                             Planejamento e Controle
                         </h2>
                         <ul class="list-disc p-5">
-                            <li>
-                                <a href="{{ route('financeiro.conta-financeira-listar') }}" class="hover:text-sm">
-                                    Plano de Contas
-                                </a>
-                            </li>
-                            <li><a href="#" class="hover:text-gray-400">Centro de custos</a></li>
-                            <li><a href="#" class="hover:text-gray-400">Estoque</a></li>
-                            <li><a href="#" class="hover:text-gray-400">Relatórios</a></li>
+                            <li><a href="{{ route('financeiro.conta-financeira-listar') }}" class="hover:font-semibold hover:text-sm">Plano de Contas</a></li>
+                            <li><a href="#" class="hover:font-semibold hover:text-sm">Centro de custos</a></li>
+                            <li><a href="#" class="hover:font-semibold hover:text-sm">Estoque</a></li>
+                            <li><a href="#" class="hover:font-semibold hover:text-sm">Relatórios</a></li>
                         </ul>
                     </div>
 

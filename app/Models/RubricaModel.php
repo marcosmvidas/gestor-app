@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Rubrica extends Model
+class RubricaModel extends Model
 {
     use HasFactory;
+
+    protected $table = 'rubricas';
 
     protected $fillable = [
         'codigo',

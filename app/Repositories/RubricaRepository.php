@@ -33,4 +33,12 @@ class RubricaRepository
         $rubrica = $this->findById($id);
         $rubrica->delete();
     }
+
+    public function list(int $perPage = 5, string $orderBy = 'descricao', string $orderDirection = 'asc')
+    {
+        return RubricaModel::orderBy($orderBy, $orderDirection)
+            ->paginate($perPage);
+    }
+
+
 }
