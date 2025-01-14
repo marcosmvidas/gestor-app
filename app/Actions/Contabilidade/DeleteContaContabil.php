@@ -1,13 +1,20 @@
-<?php 
+<?php
 
 namespace App\Actions\Contabilidade;
 
-use App\Models\ContaContabilModel;
+use App\Repositories\ContaContabilRepository;
 
 class DeleteContaContabil
 {
-    public function delete(ContaContabilModel $conta): void
+    protected $contaContabilRepository;
+
+    public function __construct(ContaContabilRepository $contaContabilRepository)
     {
-        $conta->delete();
+        $this->contaContabilRepository = $contaContabilRepository;
+    }
+
+    public function delete(int $id): void
+    {
+        $this->contaContabilRepository->delete($id);
     }
 }

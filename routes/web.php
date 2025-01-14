@@ -39,6 +39,7 @@ Route::middleware([
     // Rotas folha de pagamento
     Route::get('folha-pagamento/rubrica-listar', RubricaListar::class)->name('folha-pagamento.rubrica-listar');
     Route::get('folha-pagamento/rubrica-form', RubricaForm::class)->name('folha-pagamento.rubrica-form');
+    Route::get('folha-pagamento/rubrica-form/{rubricaId?}', RubricaForm::class)->name('folha-pagamento.rubrica-form');
 
     // Rotas para fiscal
     Route::get('fiscal', function () {
