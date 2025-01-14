@@ -12,12 +12,10 @@ class ContaContabilRepository
      * @param array $data
      * @return \App\Models\ContaContabilModel
      */
-    public function create(array $data)
+    public function create(array $data): ContaContabilModel
     {
-        // Geração do código reduzido automaticamente
         $data['codigo_reduzido'] = $this->generateCodigoReducido();
 
-        // Cria a conta
         return ContaContabilModel::create($data);
     }
 

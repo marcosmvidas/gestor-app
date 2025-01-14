@@ -2,22 +2,19 @@
 
 namespace App\Actions\Rubrica;
 
-use App\Models\RubricaModel;
+use App\Repositories\RubricaRepository;
 
 class DeleteRubrica
 {
-    /**
-     * Deleta uma rubrica.
-     *
-     * @param int $id
-     * @return void
-     */
+    protected $rubricaRepository;
+
+    public function __construct(RubricaRepository $rubricaRepository)
+    {
+        $this->rubricaRepository = $rubricaRepository;
+    }
+
     public function delete(int $id): void
     {
-        // Localizando a rubrica
-        $rubrica = RubricaModel::findOrFail($id);
-
-        // Deletando a rubrica
-        $rubrica->delete();
+        $this->rubricaRepository->delete($id);
     }
 }
