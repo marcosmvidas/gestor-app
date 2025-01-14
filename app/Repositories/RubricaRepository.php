@@ -16,7 +16,7 @@ class RubricaRepository
         return RubricaModel::findOrFail($id);
     }
 
-    public function create(array $data)
+    public function create(array $data): RubricaModel
     {
         return RubricaModel::create($data);
     }

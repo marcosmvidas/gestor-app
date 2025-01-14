@@ -2,36 +2,66 @@
 
 namespace App\Actions\Rubrica;
 
-use App\Models\RubricaModel;
+use App\Repositories\RubricaRepository;
 use App\Actions\Rubrica\InputRubrica;
 use App\Services\Validation\RubricaValidate;
 
+/**
+ * Classe responsável pela criação de uma rubrica utilizada na folha de pagamento.
+ *
+ * Esta classe lida com a validação dos dados da rubrica, preparação dos dados de entrada
+ * e a interação com o repositório para realizar a criação da rubrica no banco de dados.
+ * A rubrica pode se referir a um tipo de compensação ou dedução a ser aplicada aos salários
+ * dos funcionários, como horas extras, descontos, impostos, etc.
+ */
 class CreateRubrica
 {
     protected $validator;
     protected $prepareInput;
+    protected $repository;
 
-    public function __construct(RubricaValidate $validator, InputRubrica $prepareInput )
+    /**
+     * Cria uma nova instância da classe CreateRubrica.
+     *
+     * @param RubricaValidate $validator Instância do validador de conta contábil.
+     * @param InputRubrica $prepareInput Instância para preparação dos dados de entrada.
+     * @param RubricaRepository $repository Instância do repositório para manipulação da rubrica.
+     */
+    public function __construct(
+        RubricaValidate $validator,
+        InputRubrica $prepareInput,
+        RubricaRepository $repository,
+    )
+
     {
         $this->validator = $validator;
-        $this->prepareInput;
+        $this->prepareInput = $prepareInput;
+        $this->repository = $repository;
     }
 
     /**
-     * Cria uma nova rubrica.
+     * Cria uma rubrica para folha de pagamento no sistema.
      *
-     * @param array $input
-     * @return RubricaModel
+     * Este método realiza a validação e preparação dos dados de entrada,
+     * e chama o repositório para persistir a rubrica no banco de dados.
+     *
+     * @param array $input Dados necessários para a criação da rubrica.
+     * @return int O ID da rubrica criada.
+     * @throws \Exception Se houver algum erro na criação da rubrica.
      */
-    public function create(array $input): RubricaModel
+    public function create(array $input): int
     {
         $this->validator->validate($input);
 
         $inputData = $this->prepareInput->prepare($input);
 
-        return RubricaModel::create($inputData);
+        $rubrica = $this->repository->create($inputData);
+
+        if (!$rubrica) {
+            throw new \Exception("Erro  ao criar a rubrica");
+        }
+
+        return $rubrica->id;
     }
+
 }
-
-
-
