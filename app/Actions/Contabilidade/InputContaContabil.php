@@ -4,6 +4,12 @@ namespace App\Actions\Contabilidade;
 
 class InputContaContabil
 {
+    /**
+     * Prepara os dados de entrada para criação ou atualização de uma conta contabil.
+     *
+     * @param array $input
+     * @return array
+     */
     public function prepare(array $input): array
     {
         return [

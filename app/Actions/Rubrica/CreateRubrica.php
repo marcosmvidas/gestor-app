@@ -32,3 +32,6 @@ class CreateRubrica
         return RubricaModel::create($inputData);
     }
 }
+
+
+
