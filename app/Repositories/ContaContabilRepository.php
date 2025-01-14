@@ -14,9 +14,14 @@ class ContaContabilRepository
      */
     public function create(array $data): ContaContabilModel
     {
-        $data['codigo_reduzido'] = $this->generateCodigoReducido();
+        $data['codigo_reduzido'] = $this->generateCodigoReduzido();
 
         return ContaContabilModel::create($data);
+    }
+
+    public function findById(int $id)
+    {
+        return ContaContabilModel::findOrFail($id);
     }
 
     /**
@@ -26,11 +31,11 @@ class ContaContabilRepository
      * @param array $data
      * @return \App\Models\ContaContabilModel
      */
-    public function update(int $id, array $data)
+    public function update(int $id, array $data): bool
     {
         $conta = ContaContabilModel::findOrFail($id);
-        $conta->update($data);
-        return $conta;
+
+        return $conta->update($data);
     }
 
     /**
@@ -64,9 +69,13 @@ class ContaContabilRepository
      *
      * @return string
      */
-    protected function generateCodigoReducido()
+    protected function generateCodigoReduzido()
     {
-        // Lógica para gerar o código reduzido
-        return '10000-' . rand(0, 9);  // Exemplo simples de código reduzido
+        return '10000-' . rand(0, 9);
     }
+
+     public function getMaxCodigoReduzido()
+     {
+         return ContaContabilModel::max('codigo_reduzido');
+     }
 }

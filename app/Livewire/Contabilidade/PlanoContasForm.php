@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace App\Livewire\Contabilidade;
 
@@ -6,7 +6,7 @@ use Livewire\Component;
 use App\Actions\Contabilidade\CreateContaContabil;
 use App\Actions\Contabilidade\UpdateContaContabil;
 use App\Actions\Contabilidade\DeleteContaContabil;
-use App\Models\ContaContabilModel;
+use App\Repositories\ContaContabilRepository;
 
 class PlanoContasForm extends Component
 {
@@ -21,9 +21,27 @@ class PlanoContasForm extends Component
     public $observacao;
     public $ativo = true;
 
+    public function mount($contaId = null)
+    {
+        $repository = app(ContaContabilRepository::class);
+
+        if ($contaId) {
+            $this->editing = true;
+
+            $conta = $repository->findById($contaId);
+            if ($conta) {
+                $this->fill($conta->toArray());
+            }
+        } else {
+            $this->codigo_reduzido = self::gerarCodigoReduzido();
+        }
+    }
+
     public static function gerarCodigoReduzido(): string
     {
-        $ultimoCodigoBase = ContaContabilModel::query()->max('codigo_reduzido');
+        $repository = app(ContaContabilRepository::class);
+
+        $ultimoCodigoBase = $repository->getMaxCodigoReduzido();
         $proximoBase = $ultimoCodigoBase ? intval(explode('-', $ultimoCodigoBase)[0]) + 1 : 10000;
 
         $pesos = [2, 5, 4, 3, 2];
@@ -43,48 +61,34 @@ class PlanoContasForm extends Component
         }
 
         return "{$proximoBase}-{$resultado}";
-    }    
-
-    public function mount($contaId = null)
-    {
-        if ($contaId) {
-            $this->editing = true;
-
-            $conta = ContaContabilModel::findOrFail($contaId);
-            if($conta) {
-                $this->fill($conta->toArray());
-            }
-        } else {
-            $this->codigo_reduzido = self::gerarCodigoReduzido();
-        }
     }
 
     public function createConta()
     {
         $input = $this->prepareInputData();
-    
+
         $createAction = app(CreateContaContabil::class);
         $createAction->create($input);
-    
+
         session()->flash('message', 'Conta contábil criada com sucesso!');
         $this->resetForm();
     }
-    
+
     public function updateConta()
     {
         $input = $this->prepareInputData();
 
         $updateAction = app(UpdateContaContabil::class);
-        $updateAction->update($input, ContaContabilModel::findOrFail($this->contaId));
-        
+        $updateAction->update($input, $this->contaId);
+
         session()->flash('message', 'Conta contábil atualizada com sucesso!');
         $this->resetForm();
     }
 
     public function deleteConta()
     {
-        $conta = ContaContabil::findOrFail($this->contaId);
-        (new DeleteContaContabil())->delete($conta);
+        $deleteAction = app(DeleteContaContabil::class);
+        $deleteAction->delete($this->contaId);
 
         session()->flash('message', 'Conta contábil excluída com sucesso!');
         $this->resetForm();
