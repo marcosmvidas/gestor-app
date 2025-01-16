@@ -4,6 +4,7 @@ namespace App\Livewire\FolhaPagamento;
 
 use Livewire\Component;
 use App\Repositories\RubricaRepository;
+use App\Actions\Rubrica\InputRubrica;
 use App\Actions\Rubrica\CreateRubrica;
 use App\Actions\Rubrica\UpdateRubrica;
 use App\Actions\Rubrica\DeleteRubrica;
@@ -19,13 +20,15 @@ class RubricaForm extends Component
     public $observacao;
     public $ativo = true;
     public $incidencias = [];
-    public $ordem_calculo; // Adicionando a propriedade aqui
+    public $ordem_calculo;
     public $natureza_rubrica;
     public $chave_contabil;
     public $chave_financeira;
     public $campo_trct;
     public $exibe_em_folha;
 
+    protected $fields = [];
+    protected $inputAction;
     protected $createAction;
     protected $updateAction;
     protected $deleteAction;
@@ -33,11 +36,17 @@ class RubricaForm extends Component
 
     public function __construct()
     {
-        // Injetando as actions e o repository no construtor
+        $this->inputAction = app(InputRubrica::class);
         $this->createAction = app(CreateRubrica::class);
         $this->updateAction = app(UpdateRubrica::class);
         $this->deleteAction = app(DeleteRubrica::class);
-        $this->rubricaRepository = app(RubricaRepository::class); // Injeção do repositório
+        $this->rubricaRepository = app(RubricaRepository::class);
+
+        // Define os campos dinamicamente a partir do InputRubrica
+        $this->fields = InputRubrica::fields();
+        foreach ($this->fields as $field => $defaultValue) {
+            $this->{$field} = $defaultValue;
+        }
     }
 
     public function mount($rubricaId = null)
@@ -45,7 +54,6 @@ class RubricaForm extends Component
         if ($rubricaId) {
             $this->editing = true;
 
-            // Usando o repositório para buscar a Rubrica
             $rubrica = $this->rubricaRepository->findById($rubricaId);
             if ($rubrica) {
                 $this->fill($rubrica->toArray());
@@ -55,9 +63,8 @@ class RubricaForm extends Component
 
     public function createRubrica()
     {
-        $input = $this->prepareInputData();
-
-        // Usando a Action para criar a Rubrica
+        $input = $this->inputAction->prepare($this->getFormData());
+        // dd($input);
         $this->createAction->create($input);
 
         session()->flash('message', 'Rubrica criada com sucesso!');
@@ -66,9 +73,7 @@ class RubricaForm extends Component
 
     public function updateRubrica()
     {
-        $input = $this->prepareInputData();
-
-        $this->updateAction->update($this->rubricaId, $input);
+        $this->updateAction->update($inputAction, $this->rubricaId);
 
         session()->flash('message', 'Rubrica atualizada com sucesso!');
         $this->resetForm();
@@ -76,27 +81,20 @@ class RubricaForm extends Component
 
     public function deleteRubrica()
     {
-        // Usando o repositório para excluir a Rubrica
         $this->deleteAction->delete($this->rubricaId);
 
         session()->flash('message', 'Rubrica excluída com sucesso!');
         $this->resetForm();
     }
 
-    private function prepareInputData(): array
+    private function getFormData(): array
     {
-        return [
-            'codigo' => $this->codigo,
-            'descricao' => $this->descricao,
-            'tipo' => $this->tipo,
-            'ordem_calculo' => $this->ordem_calculo ?? 0, // Certifique-se de que a ordem_calculo está definida
-            'natureza_rubrica' => $this->natureza_rubrica ?? 0,
-            'chave_contabil' => $this->chave_contabil ?? 0,
-            'chave_financeira' => $this->chave_financeira ?? 0,
-            'incidencias' => $this->incidencias,
-            'campo_trct' => $this->campo_trct ?? 0,
-            'exibe_em_folha' => $this->exibe_em_folha ?? true,
-        ];
+        $data = [];
+        foreach ($this->fields as $field => $_) {
+            $data[$field] = $this->{$field};
+        }
+
+        return $data;
     }
 
     private function resetForm()

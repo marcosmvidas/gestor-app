@@ -21,14 +21,25 @@ class PlanoContasForm extends Component
     public $observacao;
     public $ativo = true;
 
+    protected $createAction;
+    protected $updateAction;
+    protected $deleteAction;
+    protected $repository;
+
+    public function __construct()
+    {
+        $this->createAction = app(CreateContaContabil::class);
+        $this->updateAction = app(UpdateContaContabil::class);
+        $this->deleteAction = app(DeleteContaContabil::class);
+        $this->repository = app(ContaContabilRepository::class);
+    }
+
     public function mount($contaId = null)
     {
-        $repository = app(ContaContabilRepository::class);
-
         if ($contaId) {
             $this->editing = true;
 
-            $conta = $repository->findById($contaId);
+            $conta = $this->repository->findById($contaId); // Corrigido aqui
             if ($conta) {
                 $this->fill($conta->toArray());
             }
@@ -39,9 +50,7 @@ class PlanoContasForm extends Component
 
     public static function gerarCodigoReduzido(): string
     {
-        $repository = app(ContaContabilRepository::class);
-
-        $ultimoCodigoBase = $repository->getMaxCodigoReduzido();
+        $ultimoCodigoBase = app(ContaContabilRepository::class)->getMaxCodigoReduzido(); // Corrigido aqui
         $proximoBase = $ultimoCodigoBase ? intval(explode('-', $ultimoCodigoBase)[0]) + 1 : 10000;
 
         $pesos = [2, 5, 4, 3, 2];
@@ -65,10 +74,9 @@ class PlanoContasForm extends Component
 
     public function createConta()
     {
-        $input = $this->prepareInputData();
+        // $input = $this->prepareInputData(); // Prepare os dados "não precisa pois já está sendo tratado no C:\development\e-gestor\gestor-app\app\Actions\Contabilidade\CreateContaContabil.php"
 
-        $createAction = app(CreateContaContabil::class);
-        $createAction->create($input);
+        $this->createAction->create($input); // Passa os dados preparados para a ação "esses dados já estão acima preparados no arquivo"
 
         session()->flash('message', 'Conta contábil criada com sucesso!');
         $this->resetForm();
@@ -76,10 +84,9 @@ class PlanoContasForm extends Component
 
     public function updateConta()
     {
-        $input = $this->prepareInputData();
+        $input = $this->prepareInputData(); // Prepare os dados
 
-        $updateAction = app(UpdateContaContabil::class);
-        $updateAction->update($input, $this->contaId);
+        $this->updateAction->update($input, $this->contaId); // Passa os dados preparados para a ação
 
         session()->flash('message', 'Conta contábil atualizada com sucesso!');
         $this->resetForm();
@@ -87,25 +94,10 @@ class PlanoContasForm extends Component
 
     public function deleteConta()
     {
-        $deleteAction = app(DeleteContaContabil::class);
-        $deleteAction->delete($this->contaId);
+        $this->deleteAction->delete($this->contaId); // Chama a ação de exclusão
 
         session()->flash('message', 'Conta contábil excluída com sucesso!');
         $this->resetForm();
-    }
-
-    private function prepareInputData(): array
-    {
-        return [
-            'classificacao' => $this->classificacao,
-            'codigo_reduzido' => $this->codigo_reduzido,
-            'descricao' => $this->descricao,
-            'tipo' => $this->tipo,
-            'natureza' => $this->natureza,
-            'cta_referencial_sped' => $this->cta_referencial_sped ?? '',
-            'observacao' => $this->observacao ?? '',
-            'ativo' => $this->ativo,
-        ];
     }
 
     private function resetForm()
@@ -118,6 +110,7 @@ class PlanoContasForm extends Component
 
     public function render()
     {
+
         return view('livewire.contabilidade.plano-contas-form')->layout('layouts.app');
     }
 }

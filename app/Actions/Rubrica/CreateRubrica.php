@@ -23,7 +23,7 @@ class CreateRubrica
     /**
      * Cria uma nova instância da classe CreateRubrica.
      *
-     * @param RubricaValidate $validator Instância do validador de conta contábil.
+     * @param RubricaValidate $validator Instância do validador da rubrica.
      * @param InputRubrica $prepareInput Instância para preparação dos dados de entrada.
      * @param RubricaRepository $repository Instância do repositório para manipulação da rubrica.
      */
@@ -55,13 +55,13 @@ class CreateRubrica
 
         $inputData = $this->prepareInput->prepare($input);
 
-        $rubrica = $this->repository->create($inputData);
+        $inputData = $this->repository->create($inputData);
 
-        if (!$rubrica) {
+        if (!$inputData) {
             throw new \Exception("Erro  ao criar a rubrica");
         }
 
-        return $rubrica->id;
+        return $inputData->id;
     }
 
 }

@@ -8,6 +8,10 @@ class RubricaValidate
 {
     public static function validate(array $data, bool $isUpdate = false)
     {
+        if (!isset($data['incidencias']) || $data['incidencias'] === null) {
+            $data['incidencias'] = [];
+        }
+
         $rules = [
             'codigo' => 'required|string|max:10',
             'descricao' => 'required|string',
@@ -23,6 +27,10 @@ class RubricaValidate
 
         if ($isUpdate) {
             $rules['codigo'] = 'required|string|max:10';
+        }
+
+        if (isset($data['incidencias']) && !is_array($data['incidencias'])) {
+            throw new \InvalidArgumentException('O campo "incidencias" deve ser um array.');
         }
 
         $validator = Validator::make($data, $rules);

@@ -82,9 +82,15 @@
                         <x-action-message class="me-3" on="saved">
                             {{ __('Saved.') }}
                         </x-action-message>
-                        <x-button>
+                        <x-button class="mr-3">
                             {{ $editing ? __('Alterar') : __('Salvar') }}
                         </x-button>
+
+                        <x-cancel-button class="mr-3">
+                            {{ __('Cancelar') }}
+                        </x-cancel-button>
+
+
                     </x-slot>
                 </x-form-section>
 

@@ -53,6 +53,10 @@ class CreateContaContabil
 
         $inputData = $this->prepareInput->prepare($input);
 
-        return $this->contaContabilRepository->create($inputData);
+        if (!$inputData) {
+            throw new \Exception("Erro  ao criar a conta contábil.");
+        }
+
+        return $inputData->id;
     }
 }

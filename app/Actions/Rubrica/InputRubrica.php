@@ -4,19 +4,39 @@ namespace App\Actions\Rubrica;
 
 class InputRubrica
 {
-    public function prepare(array $input): array
+    /**
+     * Retorna os campos padrão para a rubrica.
+     *
+     * @return array
+     */
+    public static function fields(): array
     {
         return [
-            'codigo' => $input['codigo'],
-            'descricao' => $input['descricao'],
-            'tipo' => $input['tipo'],
-            'ordem_calculo' => $input['ordem_calculo'] ?? '',
-            'natureza_rubrica' => $input['natureza_rubrica'] ?? '',
-            'chave_contabil' => $input['chave_contabil'] ?? '',
-            'chave_financeira' => $input['chave_financeira'] ?? '',
-            'incidencias' => json_encode($input['incidencias'] ?? []),
-            'campo_trct' => $input['campo_trct'] ?? '',
-            'exibe_em_folha' => $input['exibe_em_folha'] ?? true,
+            'codigo' => null,
+            'descricao' => null,
+            'tipo' => null,
+            'incidencias' => [],
+            'ordem_calculo' => null,
+            'natureza_rubrica' => null,
+            'chave_contabil' => null,
+            'chave_financeira' => null,
+            'campo_trct' => null,
+            'exibe_em_folha' => false,
         ];
+    }
+
+    /**
+     * Prepara os dados para criação ou atualização.
+     *
+     * @param array $input
+     * @return array
+     */
+    public function prepare(array $input): array
+    {
+        $fields = self::fields();
+
+        $prepared = array_intersect_key($input, $fields);
+
+        return $prepared;
     }
 }

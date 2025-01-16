@@ -33,6 +33,7 @@
                         <tr>
                         <th class="px-4 py-2">Rubrica</th>
                         <th class="px-4 py-2 text-left">Descrição</th>
+                        <th class="px-4 py-2 text-left"></th>
                             <th class="px-4 py-2">Ação</th>
                         </tr>
                     </thead>
@@ -41,6 +42,7 @@
                         <tr class="hover:bg-gray-50 transition duration-200">
                             <td class="px-4 py-2 text-center">{{ $item['codigo'] }}</td>
                             <td class="px-4 py-2">{{ $item['descricao'] }}</td>
+                            <td class="px-4 py-2">{{ $item['tipo'] }}</td>
                             <td class="px-6 py-2 text-sm text-center">
                                 <a href="{{ route('folha-pagamento.rubrica-form', $item['id']) }}"
                                     class="text-blue-600 hover:text-xs p-2" title="Editar rubrica"
