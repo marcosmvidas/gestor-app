@@ -3,6 +3,7 @@
 namespace App\Livewire\Contabilidade;
 
 use Livewire\Component;
+use App\Actions\Contabilidade\InputContaContabil;
 use App\Actions\Contabilidade\CreateContaContabil;
 use App\Actions\Contabilidade\UpdateContaContabil;
 use App\Actions\Contabilidade\DeleteContaContabil;
@@ -21,6 +22,8 @@ class PlanoContasForm extends Component
     public $observacao;
     public $ativo = true;
 
+    protected $fields = [];
+    protected $inputAction;
     protected $createAction;
     protected $updateAction;
     protected $deleteAction;
@@ -28,10 +31,16 @@ class PlanoContasForm extends Component
 
     public function __construct()
     {
+        $this->inputAction = app(InputContaContabil::class);
         $this->createAction = app(CreateContaContabil::class);
         $this->updateAction = app(UpdateContaContabil::class);
         $this->deleteAction = app(DeleteContaContabil::class);
         $this->repository = app(ContaContabilRepository::class);
+
+        $this->fields = InputContaContabil::fields();
+        foreach ($this->fields as $field => $defaultValue) {
+            $this->{$field} = $defaultValue;
+        }
     }
 
     public function mount($contaId = null)
@@ -39,7 +48,7 @@ class PlanoContasForm extends Component
         if ($contaId) {
             $this->editing = true;
 
-            $conta = $this->repository->findById($contaId); // Corrigido aqui
+            $conta = $this->repository->findById($contaId);
             if ($conta) {
                 $this->fill($conta->toArray());
             }
@@ -50,7 +59,7 @@ class PlanoContasForm extends Component
 
     public static function gerarCodigoReduzido(): string
     {
-        $ultimoCodigoBase = app(ContaContabilRepository::class)->getMaxCodigoReduzido(); // Corrigido aqui
+        $ultimoCodigoBase = app(ContaContabilRepository::class)->getMaxCodigoReduzido();
         $proximoBase = $ultimoCodigoBase ? intval(explode('-', $ultimoCodigoBase)[0]) + 1 : 10000;
 
         $pesos = [2, 5, 4, 3, 2];
@@ -74,19 +83,20 @@ class PlanoContasForm extends Component
 
     public function createConta()
     {
-        // $input = $this->prepareInputData(); // Prepare os dados "não precisa pois já está sendo tratado no C:\development\e-gestor\gestor-app\app\Actions\Contabilidade\CreateContaContabil.php"
+        $input = $this->inputAction->prepare($this->getFormData());
 
-        $this->createAction->create($input); // Passa os dados preparados para a ação "esses dados já estão acima preparados no arquivo"
+        $this->createAction->create($input);
 
         session()->flash('message', 'Conta contábil criada com sucesso!');
         $this->resetForm();
+        $this->codigo_reduzido = self::gerarCodigoReduzido();
     }
 
     public function updateConta()
     {
-        $input = $this->prepareInputData(); // Prepare os dados
+        $input = $this->inputAction->prepare($this->getFormData());
 
-        $this->updateAction->update($input, $this->contaId); // Passa os dados preparados para a ação
+        $this->updateAction->update($input, $this->contaId);
 
         session()->flash('message', 'Conta contábil atualizada com sucesso!');
         $this->resetForm();
@@ -94,10 +104,20 @@ class PlanoContasForm extends Component
 
     public function deleteConta()
     {
-        $this->deleteAction->delete($this->contaId); // Chama a ação de exclusão
+        $this->deleteAction->delete($this->contaId);
 
         session()->flash('message', 'Conta contábil excluída com sucesso!');
         $this->resetForm();
+    }
+
+    private function getFormData(): array
+    {
+        $data = [];
+        foreach ($this->fields as $field => $_) {
+            $data[$field] = $this->{$field};
+        }
+
+        return $data;
     }
 
     private function resetForm()
@@ -110,7 +130,6 @@ class PlanoContasForm extends Component
 
     public function render()
     {
-
         return view('livewire.contabilidade.plano-contas-form')->layout('layouts.app');
     }
 }

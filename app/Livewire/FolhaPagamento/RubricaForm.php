@@ -42,7 +42,6 @@ class RubricaForm extends Component
         $this->deleteAction = app(DeleteRubrica::class);
         $this->rubricaRepository = app(RubricaRepository::class);
 
-        // Define os campos dinamicamente a partir do InputRubrica
         $this->fields = InputRubrica::fields();
         foreach ($this->fields as $field => $defaultValue) {
             $this->{$field} = $defaultValue;
@@ -63,8 +62,8 @@ class RubricaForm extends Component
 
     public function createRubrica()
     {
-        $input = $this->inputAction->prepare($this->getFormData());
-        // dd($input);
+        $input = $this->prepareInput();
+
         $this->createAction->create($input);
 
         session()->flash('message', 'Rubrica criada com sucesso!');
@@ -73,7 +72,9 @@ class RubricaForm extends Component
 
     public function updateRubrica()
     {
-        $this->updateAction->update($inputAction, $this->rubricaId);
+        $input = $this->prepareInput();
+
+        $this->updateAction->update($input, $this->rubricaId);
 
         session()->flash('message', 'Rubrica atualizada com sucesso!');
         $this->resetForm();
@@ -85,6 +86,11 @@ class RubricaForm extends Component
 
         session()->flash('message', 'Rubrica excluída com sucesso!');
         $this->resetForm();
+    }
+
+    private function prepareInput(): array
+    {
+        return $this->inputAction->prepare($this->getFormData());
     }
 
     private function getFormData(): array

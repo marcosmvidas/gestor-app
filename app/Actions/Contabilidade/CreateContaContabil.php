@@ -16,7 +16,7 @@ class CreateContaContabil
 {
     protected $validator;
     protected $prepareInput;
-    protected $contaContabilRepository;
+    protected $repository;
 
     /**
      * Cria uma nova instância da classe CreateContaContabil.
@@ -28,13 +28,13 @@ class CreateContaContabil
     public function __construct(
         ContaContabilValidate $validator,
         InputContaContabil $prepareInput,
-        ContaContabilRepository $contaContabilRepository
+        ContaContabilRepository $repository
     )
 
     {
         $this->validator = $validator;
         $this->prepareInput = $prepareInput;
-        $this->contaContabilRepository = $contaContabilRepository;
+        $this->repository = $repository;
     }
 
     /**
@@ -52,6 +52,8 @@ class CreateContaContabil
         $this->validator->validate($input);
 
         $inputData = $this->prepareInput->prepare($input);
+
+        $inputData = $this->repository->create($inputData);
 
         if (!$inputData) {
             throw new \Exception("Erro  ao criar a conta contábil.");
